@@ -1,0 +1,108 @@
+.box1{
+    height: 56px;
+    background:white;
+    margin: -8px;
+    margin-bottom: 2px;
+}
+.box2{
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.box3{
+    float: left;
+    text-align: center;
+    line-height: 56px;
+    height: 56px;
+}
+.box4{
+    float: right;
+    text-align: center;
+    line-height: 56px;
+    height: 56px;
+}
+.img1{
+    margin: auto;
+    margin-right: 10px;
+}
+a:link {
+    color:#000;
+    text-decoration:none;
+    font-size: 14px;
+}
+a:hover {
+    color:#00a1d6;
+    text-decoration:none;
+    font-size: 14px;
+}
+a:visited {
+    color:#000;
+    text-decoration:none;
+}
+.box5{
+    height: 86px;
+    background: #00A0d8;
+    margin-top: 0px;
+    margin-left: -8px;
+    margin-right: -8px;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.line{
+    display: flex;
+    display:inline-block;
+    font-weight: lighter;
+    vertical-align: 50%;
+    height: 1px;
+    width: 450px;
+    background: #ddd;/*加个绝对定位*/
+}
+.boxdie0{
+    display: flex;
+}
+.box6{
+    margin: -8px;
+    height: 28px;
+    margin: auto;
+    text-align: center;
+}
+.boxdie{
+    display: flex;
+}
+.box7{
+    float:left;
+    background-color: #fff;
+    height: 367px;
+    width: 750px;
+    margin-top: 30px;
+}
+.box8{
+    background-color: #fff;
+    height: 367px;
+    width: 750px;
+    margin-top: 30px;
+}
+.boxtext{
+    margin-top: 1000px;
+    height: 100px;
+    width: 100px;
+    background-color: #000;
+}
+.line2{
+    font-weight: lighter;
+    height: 300px;
+    width: 1px;
+    background: #ddd;
+    float: left;
+    margin-top: 28px;
+}
+.header{
+    font-size: 14px;
+}
+.kuang{
+    margin-left: 38px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}

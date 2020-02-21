@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+</head>
+<body>
+标题:<input type="text" id="title"/><br><br>
+作者:<input type="text" id="author"/><br><br>
+点击数:<input type="number" id="hits"><br><br>
+内容:<textarea id="content" cols="30" rows="10"></textarea><br><br>
+<button onclick="add()">添加</button>  <a href="/list">返回列表</a>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    function add() {
+        var title=$("#title").val();
+        var author=$("#author").val();
+        var hits=$("#hits").val();
+        var content=$("#content").val();
+        $.post("/api/article/add",{
+            title:title,
+            author:author,
+            hits:hits,
+            content:content,
+        },function (resp) {
+            if(resp.code==200){
+                location.reload();
+            }else{
+                alert(resp.msg);
+                console.log(resp.data);
+            }
+            
+        },"json")
+    }
+</script>
+</body>
+</html>

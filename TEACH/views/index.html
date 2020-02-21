@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+    <input type="text" id="id" value="1">
+    <button onclick="search()">查询</button><br><br>
+    <div>
+        <h2 id="title">标题</h2>
+        <h3 id="author">作者</h3>
+        <p id="content">内容</p>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        function search() {
+            //alert("click")
+            var id=$("#id").val();
+            $.get("/api/index/data",{id:id},function (resp) {
+                console.log(resp)
+                $("#title").html(resp.title)
+                $("#author").html(resp.author)
+                $("#content").html(resp.content)
+            });
+        }
+    </script>
+</body>
+</html>

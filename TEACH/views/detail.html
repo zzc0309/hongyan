@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script><div>
+    <h2 id="title">标题</h2>
+    <h3 id="author">作者</h3>
+    <p id="content">内容</p>
+    <a href="/list">返回列表</a>
+</div>
+
+<script>
+    function init() {
+        //alert("click")
+        var id=location.search.replace("?id=","")
+        $.get("/api/index/data", {id: id}, function (resp) {
+            console.log(resp)
+            $("#title").html(resp.title)
+            $("#author").html(resp.author)
+            $("#content").html(resp.content)
+        });
+    }
+    init()
+</script>
+
+</body>
+</html>

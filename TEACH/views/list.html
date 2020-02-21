@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            display: table;
+            cursor: pointer;
+            height: 28px;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        ul li:hover {
+            border-bottom: #123;
+        }
+
+        ul li button, .a {
+            border: red;
+            color: white;
+            background-color: coral;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<a href="/add" class="add">添加</a>
+<ul id="ctn">
+    <li><b>标题</b><span>[标题]</span> <b>作者</b><span>[作者]</span>
+        <button onclick="del(id)">删除</button>
+    </li>
+</ul>
+
+<div id="content"></div>
+
+<script id="test" type="text/html">
+
+
+        {{each data item key}}
+
+        <li>{{item.id}}<b>标题</b><span>[{{item.title}}]</span> <b>作者</b><span>[{{item.author}}]</span>
+            <button onclick="del({{item.id}})">删除</button ><button onclick="goEdit({{item.id}})">修改</button><a href="/detail?id={{item.id}}" class="add">详细</a></li>
+        {{/each}}
+
+
+</script>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+<script>
+    function init() {
+        $.get("/api/list/data", {}, function (resp) {
+            if (resp.code==200){
+
+                var html=template("test",resp)
+                console.log(html)
+                $("#ctn").html(html)
+            }else{
+                alert(resp.msg)
+            }
+
+        }, "json");
+    }
+
+    function del(id) {
+        //alert(id)
+        $.get("/api/list/del", {id: id}, function (resp) {
+            alert(resp)
+            if (resp.code==200) {
+                init()
+            }else{
+                alert(resp.msg)
+            }
+        })
+    }
+    function goEdit(id) {
+        window.location.href="/edit?id="+id;
+    }
+    init();
+</script>
+</body>
+</html>

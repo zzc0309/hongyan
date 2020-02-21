@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改</title>
+</head>
+<body>
+<input type="hidden" id="id">
+标题:<input type="text" id="title"/><br><br>
+作者:<input type="text" id="author"/><br><br>
+点击数:<input type="number" id="hits"><br><br>
+内容:<textarea id="content" cols="30" rows="10"></textarea><br><br>
+<button onclick="edit()">编辑</button>  <a href="/list">返回列表</a>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    function edit() {
+        var title=$("#title").val();
+        var author=$("#author").val();
+        var hits=$("#hits").val();
+        var content=$("#content").val();
+        var id=$("#id").val();
+        // $.post("/api/article/add",{
+        //     title:title,
+        //     author:author,
+        //     hits:hits,
+        //     content:content,
+        // },function (resp) {
+        //     if(resp.code==200){
+        //         location.reload();
+        //     }else{
+        //         alert(resp.msg);
+        //         console.log(resp.data);
+        //     }
+        //
+        // },"json");
+        //JSON.parse();json格式的字符串
+        $.ajax({
+            url:"/api/article/add",
+            type:"post",
+            data:JSON.stringify({title:title,
+                author:author,
+                hits:Number(hits),
+                content:content,
+                id:Number(id)}),
+            contentType:"application/json",
+            dataType:"json",
+            complete:function (resp) {
+                console.log(resp);
+            }
+        })
+    }
+    function init() {
+        //alert("click")
+        var id=location.search.replace("?id=","")
+        $.get("/api/index/data", {id: id}, function (resp) {
+            console.log(resp)
+            $("#title").val(resp.title);
+            $("#author").val(resp.author);
+            $("#content").val(resp.content)
+            // um.setContent(resp.content);
+            $("#hits").val(resp.hits);
+            $("#id").val(resp.id)
+        });
+    }
+    init()
+</script>
+</body>
+</html>
